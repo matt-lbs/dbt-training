@@ -1,10 +1,8 @@
 {{ config(
-  materialized='table',
-  database='gangdeladata789',   -- projet cible
-  schema='modelisation_sources_copie',        -- ← ton dataset (pas obligé de s’appeler "analytics")
-  alias='fct_rooms'             -- nom de la table à créer
+    materialized='table',
+    database='gangdeladata789',
+    schema='modelisation'
 ) }}
-
 
 select
     rooms.booking_reference,
