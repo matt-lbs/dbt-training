@@ -1,0 +1,30 @@
+
+version: 2                     
+
+sources:                        # Bloc des sources (tables déjà existantes dans le DWH)
+  - name: modelisation_sources      # Nom logique de la source (tu l'utiliseras dans source('raw_modelisation', ...))
+    database: gangdeladata789             # BigQuery : "database" = projet GCP
+    schema: modelisation_sources_copie         # BigQuery : "schema" = dataset
+
+    tables:                      
+      - name: calendrier_months            
+        identifier: calendrier_months 
+      - name: car_hires
+        identifier: car_hires
+
+      - name: car_rental_companies
+        identifier: car_rental_companies
+
+      - name: hotels
+        identifier: hotels
+        
+      - name: organisations
+        identifier: organisations
+
+      - name: rooms
+        identifier: rooms
+
+      - name: teams
+        identifier: teams
+      - name: users
+        identifier: users
