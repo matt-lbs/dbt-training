@@ -9,6 +9,7 @@ sources:                        # Bloc des sources (tables déjà existantes dan
     tables:                      
       - name: calendrier_months            
         identifier: calendrier_months 
+
       - name: car_hires
         identifier: car_hires
 
@@ -26,5 +27,6 @@ sources:                        # Bloc des sources (tables déjà existantes dan
 
       - name: teams
         identifier: teams
+
       - name: users
         identifier: users
