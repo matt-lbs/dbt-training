@@ -1,0 +1,48 @@
+version: 2                     
+
+sources:                                    # Bloc des sources (tables déjà existantes dans le DWH)
+  - name: dbt_mklbs_modelisation              # Nom logique de la source (tu l'utiliseras dans source('raw_modelisation', ...))
+    database: gangdeladata789               # BigQuery : "database" = projet GCP
+    schema: dbt_mklbs_modelisation      # BigQuery : "schema" = dataset
+    tables:                      
+      - name: dim_corpo_employee
+        description:  'one line per user_id (key)'
+        columns:
+          - name: user_id 
+            tests:
+            - unique
+            - not_null
+      - name: fact_corpo_subscription_income
+        description: 'one line per month '
+        columns:
+          - name: month
+            tests:
+              - not-null
+          - name: organisation_id
+              - not_null
+      - name: fact_income_monthly
+        columns:
+          - name: month
+            tests:
+              - unique
+              - not_null
+      - name: fact_travel_car_booking
+        description: 'global information of car_booking for buisness view, with one line per booking_reference '
+        columns: 
+          - name: booking_reference
+            tests:
+              - unique
+              - not_null
+      - name: fact_travel_hotel_booking
+        description: 'global information of hotel_booking for buisness view, with one line per booking_reference '
+        columns: 
+          - name: booking_reference
+            tests:
+              - unique
+              - not_null
+      - name: fact_travel_income
+        description: 'revenu per day of booking with organisation ref'
+        columns:
+          - name: income
+            tests:
+              - not_null
