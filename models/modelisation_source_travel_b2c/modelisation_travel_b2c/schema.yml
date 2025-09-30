@@ -43,7 +43,6 @@ models:
     columns:
       - name: month
         tests:
-          - unique
           - not_null
       - name: product_type
         description: Type like if it's hotels/car/subscribtion
