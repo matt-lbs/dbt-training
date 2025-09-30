@@ -1,0 +1,131 @@
+version: 2                     
+
+models:
+  - name: dim_corpo_employee
+    description: 'This table contains employee information '
+    columns:
+      - name: user_id
+        description: 'PK'
+        tests:
+          - not_null
+          - unique
+          
+      - name: first_name
+      - name: last_name
+      - name: email
+      - name: phone_number
+      - name: organisation_id
+        tests:
+          - not_null
+      - name: organisation_name
+      - name: subscribed_at
+      - name: pricing_plan
+
+  - name: fact_corpo_subscription_income
+    description: 'This table contains corpo_subscription'
+    columns:
+      - name: month
+        tests:
+          - not_null 
+      - name: organisation_id
+        tests:
+          - not_null 
+      - name: organisation_name
+
+      - name: income 
+        description: revenu
+        tests:
+          - not_null
+      - name: pricing_plan
+
+  - name: fact_income_monthly
+    description: 'This table contain revenu per month '
+    columns:
+      - name: month
+        tests:
+          - unique
+          - not_null
+      - name: product_type
+        description: Type like if it's hotels/car/subscribtion
+      - name: income
+  
+  - name: fact_travel_car_booking
+    description: 'global information of car_booking for buisness view, with one line per booking_reference '
+    columns: 
+      - name: booking_reference
+        description:  'PK'
+        tests:
+          - not_null
+          
+      - name: booked_at
+      - name: start_date
+      - name: end_date
+      - name: booking_status
+      - name: price AS booking_price
+      - name: commission_percentage
+        tests:
+          - not_null
+
+      - name: organisation_id
+        tests:
+          - not_null
+
+      - name: organisation_name
+      - name: user_id
+      - name: car_rental_company_id
+        tests:
+          - not_null
+
+      - name: car_rental_company_name
+      - name: car_model_name
+      - name: payment_done_at
+
+  - name: fact_travel_hotel_booking
+    description: 'global information of hotel_booking for buisness view, with one line per booking_reference '
+    columns: 
+      - name: booking_reference
+        description: 'PK'
+        tests:
+          - not_null
+          - unique
+
+      - name: booked_at
+      - name: start_date
+      - name: end_date
+      - name: booking_status
+      - name: booking_price
+        tests:
+          - not_null
+      - name: commission_percentage
+        tests:
+          - not_null
+
+      - name: organisation_id
+        tests:
+          - not_null
+
+      - name: organisation_name
+      - name: user_id
+      - name: hotel_id
+      - name: hotel_name
+      - name: hotel_room_id
+      - name: payment_done_at
+
+  - name: fact_travel_income
+    description: 'revenu per day of booking with organisation ref'
+    columns:
+      - name: day
+        tests:
+          - not_null
+          - unique
+
+      - name: product_type
+        description:  Type like if it's hotels/car/subscribtion
+        tests:
+          - not_null
+
+      - name: income
+      - name: organisation_id
+        tests:
+          - not_null
+      - name: organisation_name
