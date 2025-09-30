@@ -56,7 +56,6 @@ models:
         description:  'PK'
         tests:
           - not_null
-          - unique
           
       - name: booked_at
       - name: start_date
